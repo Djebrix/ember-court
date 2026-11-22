@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EMBER COURT — a card battler</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <!-- Title screen -->
+  <section id="title-screen" class="screen">
+    <div class="title-emblem" aria-hidden="true">✦</div>
+    <h1>EMBER COURT</h1>
+    <p class="tagline">A duel of cards beneath the burning throne.<br>
+    Outwit the Ash Baron — spend your embers, break his guard, take the court.</p>
+    <div class="title-cards" aria-hidden="true">
+      <div class="mini-card flame"><span class="mini-glyph">✦</span><span class="mini-value">7</span><span class="mini-name">INFERNO</span></div>
+      <div class="mini-card tide"><span class="mini-glyph">≋</span><span class="mini-value">4</span><span class="mini-name">MEND</span></div>
+      <div class="mini-card thorn"><span class="mini-glyph">❋</span><span class="mini-value">3</span><span class="mini-name">LEECH</span></div>
+      <div class="mini-card stone"><span class="mini-glyph">⬢</span><span class="mini-value">8</span><span class="mini-name">RAMPART</span></div>
+    </div>
+    <button id="start-button" class="big-button">ENTER THE COURT</button>
+    <p class="howto">Click a card to play it · Keys 1–7 play cards · <b>Space</b> ends your turn · <b>R</b> restarts</p>
+    <p class="howto">Four courts, one throne: <span class="flame-text">✦ Flame</span> strikes,
+    <span class="tide-text">≋ Tide</span> heals &amp; draws,
+    <span class="thorn-text">❋ Thorn</span> poisons &amp; leeches,
+    <span class="stone-text">⬢ Stone</span> raises shields.</p>
+  </section>
+
+  <!-- Game table -->
+  <section id="table-screen" class="screen hidden">
+    <header id="scorebar">
+      <div class="score-block"><span class="score-label">ROUND</span><span id="round-number" class="score-value">1</span></div>
+      <div class="score-block"><span class="score-label">SCORE</span><span id="score-total" class="score-value">0</span></div>
+      <div class="score-block"><span class="score-label">DECK</span><span id="deck-count" class="score-value">24</span></div>
+      <div class="score-block"><span class="score-label">TURN</span><span id="turn-label" class="score-value">YOURS</span></div>
+      <button id="restart-button" class="small-button" title="Restart (R)">↻ RESTART</button>
+    </header>
+
+    <div id="opponent-row" class="combatant-row">
+      <div class="portrait foe-portrait" aria-hidden="true">♛</div>
+      <div class="combatant-info">
+        <div class="combatant-name">THE ASH BARON <span class="foe-title">— keeper of the court</span></div>
+        <div class="life-track"><div id="foe-life-fill" class="life-fill foe"></div><span id="foe-life-text" class="life-text">24 ❤</span></div>
+        <div class="shield-line">🛡 Shield <b id="foe-shield">0</b> &nbsp;·&nbsp; Ember <b id="foe-ember">3</b></div>
+      </div>
+      <div id="foe-hand" class="foe-hand" aria-label="Opponent hand"></div>
+    </div>
+
+    <div id="middle-row">
+      <div id="played-area">
+        <div id="last-play" class="last-play">The duel begins. Play a card.</div>
+        <div id="poison-line" class="poison-line"></div>
+      </div>
+      <div id="log" class="log" aria-live="polite"></div>
+    </div>
+
+    <div id="player-row" class="combatant-row">
+      <div class="portrait you-portrait" aria-hidden="true">✦</div>
+      <div class="combatant-info">
+        <div class="combatant-name">YOU <span class="foe-title">— challenger of the court</span></div>
+        <div class="life-track"><div id="you-life-fill" class="life-fill you"></div><span id="you-life-text" class="life-text">24 ❤</span></div>
+        <div class="shield-line">🛡 Shield <b id="you-shield">0</b> &nbsp;·&nbsp; Ember <b id="you-ember">3</b> &nbsp;·&nbsp; Hand <b id="hand-count">5</b>/7</div>
+      </div>
+      <button id="end-turn-button" class="big-button end-turn">END TURN ⏎</button>
+    </div>
+
+    <div id="player-hand" class="player-hand" aria-label="Your hand"></div>
+    <p class="hint">Click a glowing card to play it. Grey cards cost more ember than you hold.</p>
+  </section>
+
+  <!-- End screens -->
+  <section id="end-screen" class="screen hidden">
+    <div id="end-emblem" class="title-emblem" aria-hidden="true">✦</div>
+    <h1 id="end-title">THE COURT IS YOURS</h1>
+    <p id="end-subtitle" class="tagline">The Ash Baron kneels. The ember throne is yours.</p>
+    <div class="end-stats">
+      <div class="end-stat"><span class="score-label">FINAL SCORE</span><span id="end-score" class="score-value big">0</span></div>
+      <div class="end-stat"><span class="score-label">ROUNDS</span><span id="end-rounds" class="score-value big">1</span></div>
+      <div class="end-stat"><span class="score-label">DAMAGE DEALT</span><span id="end-damage" class="score-value big">0</span></div>
+    </div>
+    <button id="play-again-button" class="big-button">PLAY AGAIN</button>
+    <p class="howto">Press <b>R</b> to duel again.</p>
+  </section>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
