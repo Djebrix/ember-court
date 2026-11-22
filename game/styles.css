@@ -1,0 +1,169 @@
+/* EMBER COURT — table, cards and screens. All art is CSS: no images, no fonts, no network. */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: #17100c radial-gradient(ellipse at 50% 0%, #3a1f14 0%, #17100c 60%, #0d0806 100%);
+  color: #f3e6c8;
+  font-family: Georgia, 'Times New Roman', serif;
+  overflow: hidden;
+}
+#app { width: 1280px; height: 720px; margin: 0 auto; position: relative; overflow: hidden; }
+.screen { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; }
+.hidden { display: none !important; }
+
+/* ---------- title & end screens ---------- */
+#title-screen, #end-screen { justify-content: center; gap: 14px; text-align: center; padding: 24px; }
+.title-emblem { font-size: 64px; color: #ffb347; text-shadow: 0 0 24px #ff7b00, 0 0 60px #ff5500; line-height: 1; }
+h1 { font-size: 64px; letter-spacing: 10px; color: #ffd98a; text-shadow: 0 3px 0 #7a2e00, 0 0 34px rgba(255, 140, 0, .55); }
+.tagline { font-size: 19px; line-height: 1.5; color: #e8d5a8; font-style: italic; }
+.title-cards { display: flex; gap: 14px; margin: 6px 0; }
+.mini-card {
+  width: 104px; height: 142px; border-radius: 10px; border: 2px solid #d9b36c;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  background: linear-gradient(160deg, #fff8e6, #e8d5a8); color: #221408;
+  box-shadow: 0 6px 18px rgba(0,0,0,.55); transform: rotate(-2deg);
+}
+.mini-card:nth-child(2) { transform: rotate(1.5deg); }
+.mini-card:nth-child(3) { transform: rotate(-1deg); }
+.mini-card:nth-child(4) { transform: rotate(2deg); }
+.mini-glyph { font-size: 34px; }
+.mini-value { font-size: 30px; font-weight: bold; }
+.mini-name { font-size: 11px; letter-spacing: 2px; font-weight: bold; }
+.mini-card.flame .mini-glyph, .flame-text { color: #c2271c; }
+.mini-card.tide .mini-glyph, .tide-text { color: #1c5fc2; }
+.mini-card.thorn .mini-glyph, .thorn-text { color: #2e7d32; }
+.mini-card.stone .mini-glyph, .stone-text { color: #5d5d5d; }
+.big-button {
+  font-family: Georgia, serif; font-size: 22px; font-weight: bold; letter-spacing: 3px;
+  color: #2a1503; background: linear-gradient(180deg, #ffd98a, #e8a33d);
+  border: 2px solid #ffe9b0; border-radius: 10px; padding: 14px 34px; cursor: pointer;
+  box-shadow: 0 4px 0 #8a5a12, 0 8px 20px rgba(0,0,0,.5);
+}
+.big-button:hover { filter: brightness(1.1); }
+.big-button:active { transform: translateY(3px); box-shadow: 0 1px 0 #8a5a12; }
+.small-button {
+  font-family: Georgia, serif; font-size: 14px; font-weight: bold; letter-spacing: 1px;
+  color: #f3e6c8; background: #4a2c17; border: 1px solid #d9b36c; border-radius: 8px;
+  padding: 8px 14px; cursor: pointer;
+}
+.small-button:hover { background: #5d3a20; }
+.howto { font-size: 15px; color: #cbb27f; line-height: 1.5; max-width: 760px; }
+.howto b { color: #ffd98a; }
+.end-stats { display: flex; gap: 40px; margin: 8px 0; }
+.end-stat { display: flex; flex-direction: column; gap: 4px; }
+.score-value.big { font-size: 40px; }
+
+/* ---------- table ---------- */
+#table-screen { align-items: stretch; padding: 10px 18px 8px; gap: 6px; }
+#scorebar {
+  display: flex; align-items: center; gap: 26px;
+  background: rgba(0,0,0,.35); border: 1px solid #6b4a26; border-radius: 10px; padding: 7px 16px;
+}
+.score-block { display: flex; flex-direction: column; align-items: flex-start; }
+.score-label { font-size: 11px; letter-spacing: 2px; color: #cbb27f; }
+.score-value { font-size: 24px; font-weight: bold; color: #ffd98a; }
+#restart-button { margin-left: auto; }
+
+.combatant-row {
+  display: flex; align-items: center; gap: 16px;
+  background: rgba(0,0,0,.28); border: 1px solid #5d3f22; border-radius: 12px; padding: 8px 14px;
+}
+.portrait {
+  width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 32px; border: 2px solid #d9b36c; flex: none;
+}
+.foe-portrait { background: radial-gradient(circle at 35% 30%, #6e2b2b, #2b0f0f); color: #ffb3a0; }
+.you-portrait { background: radial-gradient(circle at 35% 30%, #8a5a12, #3a2405); color: #ffd98a; }
+.combatant-info { flex: 1; min-width: 0; }
+.combatant-name { font-size: 19px; font-weight: bold; letter-spacing: 2px; }
+.foe-title { font-size: 13px; font-weight: normal; font-style: italic; color: #cbb27f; letter-spacing: 0; }
+.life-track {
+  position: relative; height: 24px; background: #241207; border: 1px solid #6b4a26;
+  border-radius: 12px; overflow: hidden; margin: 5px 0 4px;
+}
+.life-fill { height: 100%; transition: width .45s ease; }
+.life-fill.you { background: linear-gradient(90deg, #ff7b00, #ffb347); }
+.life-fill.foe { background: linear-gradient(90deg, #a11d1d, #e05252); }
+.life-text {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: bold; color: #fff; text-shadow: 0 1px 2px #000;
+}
+.shield-line { font-size: 15px; color: #e8d5a8; }
+.shield-line b { color: #9fd8ff; }
+.foe-hand { display: flex; gap: 4px; }
+.card-back {
+  width: 34px; height: 50px; border-radius: 5px; border: 1px solid #d9b36c;
+  background: repeating-linear-gradient(45deg, #5d1a1a 0 6px, #7a2424 6px 12px);
+  display: flex; align-items: center; justify-content: center; color: #ffd98a; font-size: 16px;
+}
+
+#middle-row { display: flex; gap: 12px; align-items: stretch; }
+#played-area {
+  flex: 1; min-height: 86px; background: rgba(0,0,0,.22); border: 1px dashed #6b4a26;
+  border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; justify-content: center; gap: 4px;
+}
+.last-play { font-size: 19px; font-style: italic; color: #ffe9b0; }
+.poison-line { font-size: 15px; color: #9ed69a; min-height: 18px; }
+.log {
+  width: 340px; max-height: 86px; overflow: hidden; font-size: 13px; line-height: 1.45; color: #cbb27f;
+  background: rgba(0,0,0,.3); border: 1px solid #5d3f22; border-radius: 10px; padding: 8px 10px;
+}
+.log div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.log div:first-child { color: #ffe9b0; }
+
+.end-turn { padding: 12px 22px; font-size: 18px; flex: none; }
+.end-turn:disabled { filter: grayscale(1) brightness(.6); cursor: default; }
+
+.player-hand {
+  display: flex; gap: 10px; justify-content: center; align-items: flex-end;
+  min-height: 178px; padding: 4px 0 0;
+}
+.card {
+  width: 128px; height: 172px; border-radius: 10px; border: 2px solid #d9b36c;
+  background: linear-gradient(165deg, #fff8e6 0%, #eadfc0 100%); color: #221408;
+  display: flex; flex-direction: column; align-items: center; padding: 8px 6px 6px;
+  cursor: pointer; position: relative; user-select: none;
+  box-shadow: 0 5px 14px rgba(0,0,0,.55);
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.card:hover { transform: translateY(-14px) scale(1.04); box-shadow: 0 14px 24px rgba(0,0,0,.65); }
+.card.playable { outline: 3px solid #ffb347; outline-offset: 2px; }
+.card.unaffordable { filter: grayscale(.75) brightness(.72); cursor: not-allowed; }
+.card.unaffordable:hover { transform: none; }
+.card .cost {
+  position: absolute; top: -9px; left: -9px; width: 30px; height: 30px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffcf6e, #e08a00); border: 2px solid #7a4a00;
+  color: #2a1503; font-size: 17px; font-weight: bold; display: flex; align-items: center; justify-content: center;
+}
+.card .glyph { font-size: 40px; line-height: 1; margin-top: 10px; }
+.card .value { font-size: 40px; font-weight: bold; line-height: 1.05; }
+.card .name { font-size: 13px; font-weight: bold; letter-spacing: 1.5px; margin-top: 2px; }
+.card .effect { font-size: 12.5px; line-height: 1.3; text-align: center; color: #4a3220; margin-top: 6px; }
+.card .key-hint {
+  position: absolute; bottom: 5px; right: 8px; font-size: 11px; color: #8a6a3a; font-weight: bold;
+}
+.card.flame .glyph, .card.flame .value { color: #c2271c; }
+.card.tide .glyph, .card.tide .value { color: #1c5fc2; }
+.card.thorn .glyph, .card.thorn .value { color: #2e7d32; }
+.card.stone .glyph, .card.stone .value { color: #5d5d5d; }
+.card.flame { border-top: 6px solid #c2271c; }
+.card.tide { border-top: 6px solid #1c5fc2; }
+.card.thorn { border-top: 6px solid #2e7d32; }
+.card.stone { border-top: 6px solid #5d5d5d; }
+.hint { text-align: center; font-size: 13px; color: #a98f5f; }
+
+/* card fly animation: a played card slides toward the foe */
+@keyframes card-fly {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  60% { transform: translateY(-190px) scale(1.12) rotate(4deg); opacity: 1; }
+  100% { transform: translateY(-260px) scale(.9) rotate(8deg); opacity: 0; }
+}
+.card.flying { animation: card-fly .55s ease-in forwards; pointer-events: none; }
+@keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.shake { animation: shake .3s ease; }
+@keyframes win-glow {
+  0% { text-shadow: 0 0 10px #ffb347; } 50% { text-shadow: 0 0 44px #ff7b00, 0 0 80px #ff5500; } 100% { text-shadow: 0 0 10px #ffb347; }
+}
+#end-screen.win h1 { animation: win-glow 1.6s ease-in-out infinite; }
+#end-screen.loss h1 { color: #b8b8b8; text-shadow: 0 3px 0 #333, 0 0 30px rgba(120,120,120,.5); }
+#end-screen.loss .title-emblem { color: #888; text-shadow: none; }
